@@ -1,0 +1,275 @@
+{% extends 'base.html' %}
+
+{% block title %}腾讯新闻综合{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{{url_for('static',filename='css/mod_game.css')}}">
+<link rel="stylesheet" href="{{url_for('static',filename='css/images.css')}}">
+<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+
+{% endblock %}
+{% block main %}
+<!--推荐游戏列表S-->
+<div class="layout mod_games_guide" bosszone="game_tjlb">
+		<div class="guide_item">
+	          <strong>热门</strong>
+                 {% for game in mod_game[:16] %}
+                 <a class="{{game.clss}}" href="{{game.url}}" target="_blank">{{game.name}}</a>
+                 {% endfor %}
+        </div>
+
+		<div class="guide_item">
+	          <strong>手游</strong>
+                 {% for game in mod_game[16:28] %}
+                 <a class="{{game.clss}}" href="{{game.url}}" target="_blank">{{game.name}}</a>
+                 {% endfor %}
+        </div>
+
+		<div class="guide_item">
+	          <strong>网游</strong>
+                 {% for game in mod_game[28:41]%}
+                 <a class="{{game.clss}}" href="{{game.url}}" target="_blank">{{game.name}}</a>
+                 {% endfor %}
+        </div>
+
+		<div class="guide_item">
+	          <strong>页游</strong>
+                 {% for game in mod_game[41:52] %}
+                 <a class="{{game.clss}}" href="{{game.url}}" target="_blank">{{game.name}}</a>
+                 {% endfor %}
+        </div>
+<!图片新闻-->
+ <div class="container">
+    <div class="row">
+        <p>图片新闻</p>
+    {% for image in images[:-2] %}
+          <div class="col-sm-3 col-md-3">
+            <div class="thumbnail" style="height:300px;position:relative;">
+                <a href="{{image.new_url}}">
+                    <img src="{{ image.image_url }}" style="height:220px;width: 100%;">
+                       <p>{{image.image_alt}}</p>
+                </a>
+            </div>
+          </div>
+    {% endfor %}
+    </div>
+</div>
+
+<!热门新闻-->
+<div class="hot_news">
+        <ul>
+            <strong>热门新闻</strong>
+            {% for new in hotnews[-4:] %}
+            <li>
+                <a href="{{new.url}}">{{new.content}}</a>
+                <p>{{new.data}}</p>
+            </li>
+            {% endfor %}
+        </ul>
+</div>
+     <!企鹅电竞视频-->
+<div class="container">
+    <div class="row">
+        <p>企鹅电竞视频</p>
+    {% for video in qievideos[:-2] %}
+          <div class="col-sm-3 col-md-3">
+            <div class="thumbnail" style="height:300px;position:relative;">
+                <a href="{{video.url}}">
+                    <img src="{{ video.picture }}" style="height:220px;width: 100%;">
+                       <p>{{video.name}}</p>
+                </a>
+            </div>
+          </div>
+    {% endfor %}
+    </div>
+    </div>
+<!今日新闻-->
+ <div class="today_news">
+        <ul>
+           <strong>今日新闻</strong>
+            {% for new in todaynews %}
+            <li>
+             <div class="avatar-group2">
+                <img src="{{new.image}}" alt=""
+                   class="avatar2">
+             </div>
+             <div class="question-group">
+                 <p class="question-title"><a href="{{url_for('game_newss.views.home.detail_for_tx',new_id=new.id)}}">{{new.text}}</a></p>
+                 <div class="question-info">
+                     <span class="question-author">{{new.author}}</span>
+                 </div>
+             </div>
+          </li>
+            {% endfor %}
+        </ul>
+</div>
+
+<!游戏视频-->
+<strong>游戏视频</strong>
+    <div class="container">
+    <div class="row">
+    {% for video in gamevideos[:-2] %}
+          <div class="col-sm-3 col-md-3">
+            <div class="thumbnail" style="height:300px;position:relative;">
+                <a href="{{video.url}}">
+                    <img src="{{ video.photo }}" style="height:175px;width: 100%;">
+                       <p>{{video.title}}</p>
+                    <span ><a href="{{video.index}}">作者：{{video.author}}</a></span>
+                    <span >播放量：{{video.number}}</span>
+                </a>
+            </div>
+          </div>
+    {% endfor %}
+     </div>
+        </div>
+    <!热门主播-->
+    <div class="mod_zhubo mod_list_pic">
+            <strong>热门主播</strong>
+            <ul>
+                {% for person in persons[:9] %}
+                <li>
+                    <a href="{{person.url}}">
+                        <img name="page_cnt_2" src="{{person.photo}}"/>
+                        <span class="zhubo_name">{{person.name}}</span>
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    <!厂商新闻-->
+    <div class="firm_news">
+        <ul>
+            <strong>厂商新闻</strong>
+            {% for new in firmnews %}
+            <li>
+                <a href="{{new.url}}">{{new.title}}</a>
+            </li>
+            {% endfor %}
+        </ul>
+</div>
+
+<!手机游戏新闻-->
+    <div class="phone_game">
+        <ul>
+            <strong>手游新闻</strong>
+            {% for new in allnews[:8]%}
+            <li>
+                <spqn><a href="{{url_for('game_newss.views.home.detail_for_news',new_id=new.id)}}">{{new.title}}</a></spqn>
+                <span>{{new.create_time}}</span>
+            </li>
+            {% endfor %}
+        </ul>
+</div>
+<!客户端游戏新闻-->
+    <div class="client_game">
+        <ul>
+            <strong>客户端</strong>
+            {% for new in allnews[8:16]%}
+            <li>
+                <spqn><a href="{{url_for('game_newss.views.home.detail_for_news',new_id=new.id)}}">{{new.title}}</a></spqn>
+                <span>{{new.create_time}}</span>
+            </li>
+            {% endfor %}
+        </ul>
+</div>
+<!网页游戏新闻-->
+    <div class="phone_game">
+        <ul>
+            <strong>网页游戏新闻</strong>
+            {% for new in allnews[16:24]%}
+            <li>
+                <spqn><a href="{{url_for('game_newss.views.home.detail_for_news',new_id=new.id)}}">{{new.title}}</a></spqn>
+                <span>{{new.create_time}}</span>
+            </li>
+            {% endfor %}
+        </ul>
+</div>
+<!游戏产业新闻-->
+    <div class="phone_game">
+        <ul>
+           <strong>游戏产业新闻</strong>
+            {% for new in allnews[24:32]%}
+            <li>
+                <spqn><a href="{{url_for('game_newss.views.home.detail_for_news',new_id=new.id)}}">{{new.title}}</a></spqn>
+                <span>{{new.create_time}}</span>
+            </li>
+            {% endfor %}
+        </ul>
+</div>
+<!单机/主机游戏新闻-->
+    <div class="phone_game">
+        <ul>
+            <strong>单机/主机新闻</strong>
+            {% for new in allnews[32:40]%}
+            <li>
+                <spqn><a href="{{url_for('game_newss.views.home.detail_for_news',new_id=new.id)}}">{{new.title}}</a></spqn>
+                <span>{{new.create_time}}</span>
+            </li>
+            {% endfor %}
+        </ul>
+</div>
+    <!游戏专区新闻-->
+    <div class="phone_game">
+        <ul>
+            <strong>游戏专区新闻</strong>
+            {% for new in allnews[40:48]%}
+            <li>
+                <spqn><a href="{{url_for('game_newss.views.home.detail_for_news',new_id=new.id)}}">{{new.title}}</a></spqn>
+                <span>{{new.create_time}}</span>
+            </li>
+            {% endfor %}
+        </ul>
+</div>
+<div class="layout games_rank mt30">
+	<!--近期测试游戏S-->
+	<div class="grid_440 fl" bosszone="game_jqcsyx">
+		<div class="mod_hd">
+			<h2><span>近期测试游戏</span></h2>
+		</div>
+
+<div class="mod_bd new_gamesrank">
+	<table>
+		<tr>
+					<th>日期</th>
+					<th>游戏</th>
+					<th>状态</th>
+					<th>下载</th>
+					<th>抢号</th>
+		</tr>
+        {% for game in games %}
+				<tr>
+					<td>{{game.test_time}}</td>
+					<td>{{game.game_name}}</td>
+					<td>{{game.test_style}}</td>
+					<td><a href="{{game.download_url}}" target="_blank">下载</a></td>
+					<td><a href="{{game.download_url}}" target="_blank">抢号</a></td>
+		</tr>
+
+
+        {% endfor %}
+
+
+<div class="mod_bd hot_gamesrank">
+
+	<table>
+        <strong>热门游戏排行</strong>
+		<tr>
+			<th>排行</th>
+			<th width="145">游戏</th>
+			<th width="85">期待值</th>
+			<th class="qs">趋势</th>
+            {% for game in othergames[:18] %}
+		</tr>
+						<tr class="hot">
+			<td>{{game.rank}}</td>
+			<td>
+				<a href="{{game.url}}" target="_blank">{{game.game_name}}
+				</a>
+			</td>
+			<td>{{game.number}}</td>
+			<td class="qs qs_down">---</td>
+		</tr>
+             {% endfor %}
+
+
+    {% endblock%}

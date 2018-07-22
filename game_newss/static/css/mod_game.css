@@ -1,0 +1,39 @@
+
+.layout{
+    width: 1240px;
+    margin: 0 auto;
+    color: #333;
+    font-family: microsoft yahei;
+    font-size: 16px;
+}
+
+.red{
+    color: crimson;
+}
+
+.guide_item {
+    width: 100%;
+    height: 24px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+div {
+    display: block;
+}
+.mod_games_guide {
+    widtH: 1200px;
+    padding: 10px 20px 20px;
+    border: 1px solid #eaeaea;
+    color: #b3b3b3;
+}
+.guide_item strong {
+    display: inline-block;
+    vertical-align: middle;
+    width: 43px;
+    height: 24px;
+    padding-left: 10px;
+    line-height: 24px;
+    color: #f77459;
+    background: url(//mat1.gtimg.com/gamezone/gamesindex2016/sprits.png) no-repeat;
+}

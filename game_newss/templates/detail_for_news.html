@@ -1,0 +1,18 @@
+{% extends 'base2.html' %}
+
+{% block title %}详情{% endblock %}
+
+{% block head %}
+   <link rel="stylesheet" href="{{url_for('static',filename='css/detail.css')}}">
+{% endblock %}
+
+{% block main %}
+  <h3 class="page-title">{{new.title}}</h3>
+   <p class="question-info">
+       <span>时间：{{new.create_time}}</span>
+   </p>
+   <hr>
+   <p class="question-content">{{new.content}}</p>
+   <hr>
+
+{% endblock %}

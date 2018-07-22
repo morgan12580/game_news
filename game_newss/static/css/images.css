@@ -1,0 +1,37 @@
+.focus_img_box, .focus_img_box .img_focus_con li a {
+    display: block;
+    width: 440px;
+    height: 448px;
+    position: relative;
+}
+
+.focus_img_box .img_focus_con li {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+}
+
+.focus_img_box .img_focus_con li a img, .focus_img_box .img_focus_con li a .focus_mask {
+    display: block;
+    width: 440px;
+    height: 448px;
+}
+
+.focus_img_box .img_focus_con li a .focus_mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: url(//mat1.gtimg.com/gamezone/gamesindex2016/maskbg.png) repeat-x bottom center;
+    cursor: pointer;
+}
+
+.focus_img_box .img_focus_con li a .des {
+    display: block;
+    position: absolute;
+    bottom: 98px;
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    font: normal 26px / 34px microsoft yahei;
+}

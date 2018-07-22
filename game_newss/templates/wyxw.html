@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}
+网易游戏新闻
+{% endblock%}
+{% block main %}/
+        <div class="container">
+    <div class="row">
+    {% for new in news %}
+          <div class="col-sm-3 col-md-3">
+            <div class="thumbnail" style="height:350px;position:relative;">
+                <a href="{{ url_for('game_newss.views.home.detail_for_wy',new_id=new.id) }}">
+                      <p>{{new.title}}</p>
+                </a>
+              <div class="caption">
+                <h3 class="text-center">{{ new.time }}</h3>
+                <p>{{ new.remark|truncate(200) }}</p>
+
+              </div>
+            </div>
+          </div>
+    {% endfor %}
+</div>
+</div>
+{% endblock %}
